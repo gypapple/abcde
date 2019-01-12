@@ -22,5 +22,5 @@ public interface TAnimailMapper {
 
     List<TAnimail> selectAnimailByStatus(String status);
 
-    List<TAnimail> selectAnimailByPrice(@Param("minPrice") String minPrice,@Param("maxPrice") String maxPrice);
+   List<TAnimail> selectAnimailByPrice(Map<String,Object> map);
 }
