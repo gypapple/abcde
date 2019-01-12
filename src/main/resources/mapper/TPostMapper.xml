@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.animailss.mapper.TPostMapper" >
+  <resultMap id="BaseResultMap" type="com.five.animailss.entity.TPost" >
+    <id column="p_id" property="pId" jdbcType="INTEGER" />
+    <result column="p_picture" property="pPicture" jdbcType="VARCHAR" />
+    <result column="p_info" property="pInfo" jdbcType="VARCHAR" />
+    <result column="p_createtime" property="pCreatetime" jdbcType="TIMESTAMP" />
+    <result column="p_count" property="pCount" jdbcType="INTEGER" />
+    <result column="p_type" property="pType" jdbcType="INTEGER" />
+    <result column="p_uid" property="pUid" jdbcType="INTEGER" />
+    <result column="p_state" property="pState" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="BaseResultMap1" type="com.five.animailss.vo.VPost">
+    <id column="p_id" property="pId" jdbcType="INTEGER" />
+    <result column="p_picture" property="pPicture" jdbcType="VARCHAR" />
+    <result column="p_info" property="pInfo" jdbcType="VARCHAR" />
+    <result column="p_createtime" property="pCreatetime" jdbcType="TIMESTAMP" />
+    <result column="p_count" property="pCount" jdbcType="INTEGER" />
+    <result column="p_type" property="pType" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="p_state" property="pState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    p_id, p_name, p_picture, p_info, p_createtime, p_count, p_type, p_uid, p_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_post
+    where p_id = #{pId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_post
+    where p_id = #{pId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.five.animailss.entity.TPost" >
+    insert into t_post (p_id, p_picture,
+      p_info, p_createtime, p_count, 
+      p_type, p_uid,
+      p_state)
+    values (#{pId,jdbcType=INTEGER}, #{pPicture,jdbcType=VARCHAR},
+      #{pInfo,jdbcType=VARCHAR}, #{pCreatetime,jdbcType=TIMESTAMP}, #{pCount,jdbcType=INTEGER}, 
+      #{pType,jdbcType=INTEGER}, #{pUid,jdbcType=INTEGER},
+      #{pState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.five.animailss.entity.TPost" >
+    insert into t_post
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pId != null" >
+        p_id,
+      </if>
+
+      <if test="pPicture != null" >
+        p_picture,
+      </if>
+      <if test="pInfo != null" >
+        p_info,
+      </if>
+      <if test="pCreatetime != null" >
+        p_createtime,
+      </if>
+      <if test="pCount != null" >
+        p_count,
+      </if>
+      <if test="pType != null" >
+        p_type,
+      </if>
+      <if test="pUid != null" >
+        p_uid,
+      </if>
+      <if test="pState != null" >
+        p_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
+      </if>
+
+      <if test="pPicture != null" >
+        #{pPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="pInfo != null" >
+        #{pInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="pCreatetime != null" >
+        #{pCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pCount != null" >
+        #{pCount,jdbcType=INTEGER},
+      </if>
+      <if test="pType != null" >
+        #{pType,jdbcType=INTEGER},
+      </if>
+      <if test="pUid != null" >
+        #{pUid,jdbcType=INTEGER},
+      </if>
+      <if test="pState != null" >
+        #{pState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.five.animailss.entity.TPost" >
+    update t_post
+    <set >
+
+      <if test="pPicture != null" >
+        p_picture = #{pPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="pInfo != null" >
+        p_info = #{pInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="pCreatetime != null" >
+        p_createtime = #{pCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pCount != null" >
+        p_count = #{pCount,jdbcType=INTEGER},
+      </if>
+      <if test="pType != null" >
+        p_type = #{pType,jdbcType=INTEGER},
+      </if>
+      <if test="pUid != null" >
+        p_uid = #{pUid,jdbcType=INTEGER},
+      </if>
+      <if test="pState != null" >
+        p_state = #{pState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where p_id = #{pId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.five.animailss.entity.TPost" >
+    update t_post
+    set
+      p_picture = #{pPicture,jdbcType=VARCHAR},
+      p_info = #{pInfo,jdbcType=VARCHAR},
+      p_createtime = #{pCreatetime,jdbcType=TIMESTAMP},
+      p_count = #{pCount,jdbcType=INTEGER},
+      p_type = #{pType,jdbcType=INTEGER},
+      p_uid = #{pUid,jdbcType=INTEGER},
+      p_state = #{pState,jdbcType=INTEGER}
+    where p_id = #{pId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectAll" resultMap="BaseResultMap1">
+    select p.p_id,p.p_picture,p.p_info,p.p_createtime,p.p_count,p.p_type,u.name,u.picture
+    from t_post p inner join t_userinfo u on p.p_uid=u.id limit #{index},#{limit}
+  </select>
+
+  <!--<select id="select" resultMap="BaseResultMap1">
+    select p.* ,u.name
+    from t_post p inner join t_userinfo u on p.uid=u.id
+  </select>-->
+  <select id="selectCount" resultType="int">
+    select count(*) from t_post
+  </select>
+  <update id="updateCount" parameterType="com.five.animailss.entity.TPost">
+    update t_post set p_count=p_count+1
+    where p_id=#{pId}
+  </update>
+  <select id="selectByType" parameterType="java.lang.Integer" resultMap="BaseResultMap1">
+    select p.p_id,p.p_picture,p.p_info,p.p_createtime,p.p_count,p.p_type,u.name,u.picture
+    from t_post p inner join t_userinfo u on p.p_uid=u.id where p_type=#{pType}
+  </select>
+  <select id="selectByTime" resultMap="BaseResultMap1">
+    select p.p_id,p.p_picture,p.p_info,p.p_createtime,p.p_count,p.p_type,u.name,u.picture
+    from t_post p inner join t_userinfo u on p.p_uid=u.id ORDER BY p_createtime desc
+  </select>
+  <select id="selectByCount" resultMap="BaseResultMap1">
+     select p.p_id,p.p_picture,p.p_info,p.p_createtime,p.p_count,p.p_type,u.name,u.picture
+    from t_post p inner join t_userinfo u on p.p_uid=u.id ORDER BY p_count desc
+  </select>
+
+  <select id="selectByUid" resultType="java.lang.Integer" resultMap="BaseResultMap1">
+      select p.p_id,p.p_picture,p.p_info,p.p_createtime,p.p_count,p.p_type,u.name,u.picture
+    from t_post p inner join t_userinfo u on p.p_uid=u.id where p_uid=#{pUid}
+
+  <select id="selectAllTPost" resultMap="BaseResultMap">
+    select * from t_post
+
+  </select>
+</mapper>

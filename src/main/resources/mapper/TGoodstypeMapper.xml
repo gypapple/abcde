@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.animailss.mapper.TGoodstypeMapper" >
+  <resultMap id="BaseResultMap" type="com.five.animailss.entity.TGoodstype" >
+    <id column="gt_id" property="gtId" jdbcType="INTEGER" />
+    <result column="gt_name" property="gtName" jdbcType="VARCHAR" />
+    <result column="gt_type" property="gtType" jdbcType="INTEGER" />
+    <result column="gt_level" property="gtLevel" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gt_id, gt_name, gt_type, gt_level, state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_goodstype
+    where gt_id = #{gtId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_goodstype
+    where gt_id = #{gtId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.five.animailss.entity.TGoodstype" >
+    insert into t_goodstype (gt_id, gt_name, gt_type, 
+      gt_level, state)
+    values (#{gtId,jdbcType=INTEGER}, #{gtName,jdbcType=VARCHAR}, #{gtType,jdbcType=INTEGER}, 
+      #{gtLevel,jdbcType=INTEGER}, #{state,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.five.animailss.entity.TGoodstype" >
+    insert into t_goodstype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gtId != null" >
+        gt_id,
+      </if>
+      <if test="gtName != null" >
+        gt_name,
+      </if>
+      <if test="gtType != null" >
+        gt_type,
+      </if>
+      <if test="gtLevel != null" >
+        gt_level,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gtId != null" >
+        #{gtId,jdbcType=INTEGER},
+      </if>
+      <if test="gtName != null" >
+        #{gtName,jdbcType=VARCHAR},
+      </if>
+      <if test="gtType != null" >
+        #{gtType,jdbcType=INTEGER},
+      </if>
+      <if test="gtLevel != null" >
+        #{gtLevel,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.five.animailss.entity.TGoodstype" >
+    update t_goodstype
+    <set >
+      <if test="gtName != null" >
+        gt_name = #{gtName,jdbcType=VARCHAR},
+      </if>
+      <if test="gtType != null" >
+        gt_type = #{gtType,jdbcType=INTEGER},
+      </if>
+      <if test="gtLevel != null" >
+        gt_level = #{gtLevel,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+    </set>
+    where gt_id = #{gtId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.five.animailss.entity.TGoodstype" >
+    update t_goodstype
+    set gt_name = #{gtName,jdbcType=VARCHAR},
+      gt_type = #{gtType,jdbcType=INTEGER},
+      gt_level = #{gtLevel,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER}
+    where gt_id = #{gtId,jdbcType=INTEGER}
+  </update>
+</mapper>

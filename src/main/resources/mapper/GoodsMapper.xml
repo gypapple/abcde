@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.animailss.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.five.animailss.entity.Goods" >
+    <id column="g_id" property="gId" jdbcType="INTEGER" />
+    <result column="g_name" property="gName" jdbcType="VARCHAR" />
+    <result column="g_picture" property="gPicture" jdbcType="VARCHAR" />
+    <result column="g_price" property="gPrice" jdbcType="DECIMAL" />
+    <result column="g_info" property="gInfo" jdbcType="VARCHAR" />
+    <result column="g_type" property="gType" jdbcType="INTEGER" />
+    <result column="g_color" property="gColor" jdbcType="VARCHAR" />
+    <result column="g_total" property="gTotal" jdbcType="INTEGER" />
+    <result column="g_reper" property="gReper" jdbcType="INTEGER" />
+    <result column="g_gtid" property="gGtid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    g_id, g_name, g_picture, g_price, g_info, g_type, g_color, g_total, g_reper, g_gtid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where g_id = #{gId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods
+    where g_id = #{gId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.five.animailss.entity.Goods" >
+    insert into goods (g_id, g_name, g_picture, 
+      g_price, g_info, g_type, 
+      g_color, g_total, g_reper, 
+      g_gtid)
+    values (#{gId,jdbcType=INTEGER}, #{gName,jdbcType=VARCHAR}, #{gPicture,jdbcType=VARCHAR}, 
+      #{gPrice,jdbcType=DECIMAL}, #{gInfo,jdbcType=VARCHAR}, #{gType,jdbcType=INTEGER}, 
+      #{gColor,jdbcType=VARCHAR}, #{gTotal,jdbcType=INTEGER}, #{gReper,jdbcType=INTEGER}, 
+      #{gGtid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.five.animailss.entity.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gId != null" >
+        g_id,
+      </if>
+      <if test="gName != null" >
+        g_name,
+      </if>
+      <if test="gPicture != null" >
+        g_picture,
+      </if>
+      <if test="gPrice != null" >
+        g_price,
+      </if>
+      <if test="gInfo != null" >
+        g_info,
+      </if>
+      <if test="gType != null" >
+        g_type,
+      </if>
+      <if test="gColor != null" >
+        g_color,
+      </if>
+      <if test="gTotal != null" >
+        g_total,
+      </if>
+      <if test="gReper != null" >
+        g_reper,
+      </if>
+      <if test="gGtid != null" >
+        g_gtid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gId != null" >
+        #{gId,jdbcType=INTEGER},
+      </if>
+      <if test="gName != null" >
+        #{gName,jdbcType=VARCHAR},
+      </if>
+      <if test="gPicture != null" >
+        #{gPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="gPrice != null" >
+        #{gPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="gInfo != null" >
+        #{gInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="gType != null" >
+        #{gType,jdbcType=INTEGER},
+      </if>
+      <if test="gColor != null" >
+        #{gColor,jdbcType=VARCHAR},
+      </if>
+      <if test="gTotal != null" >
+        #{gTotal,jdbcType=INTEGER},
+      </if>
+      <if test="gReper != null" >
+        #{gReper,jdbcType=INTEGER},
+      </if>
+      <if test="gGtid != null" >
+        #{gGtid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.five.animailss.entity.Goods" >
+    update goods
+    <set >
+      <if test="gName != null" >
+        g_name = #{gName,jdbcType=VARCHAR},
+      </if>
+      <if test="gPicture != null" >
+        g_picture = #{gPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="gPrice != null" >
+        g_price = #{gPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="gInfo != null" >
+        g_info = #{gInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="gType != null" >
+        g_type = #{gType,jdbcType=INTEGER},
+      </if>
+      <if test="gColor != null" >
+        g_color = #{gColor,jdbcType=VARCHAR},
+      </if>
+      <if test="gTotal != null" >
+        g_total = #{gTotal,jdbcType=INTEGER},
+      </if>
+      <if test="gReper != null" >
+        g_reper = #{gReper,jdbcType=INTEGER},
+      </if>
+      <if test="gGtid != null" >
+        g_gtid = #{gGtid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where g_id = #{gId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.five.animailss.entity.Goods" >
+    update goods
+    set g_name = #{gName,jdbcType=VARCHAR},
+      g_picture = #{gPicture,jdbcType=VARCHAR},
+      g_price = #{gPrice,jdbcType=DECIMAL},
+      g_info = #{gInfo,jdbcType=VARCHAR},
+      g_type = #{gType,jdbcType=INTEGER},
+      g_color = #{gColor,jdbcType=VARCHAR},
+      g_total = #{gTotal,jdbcType=INTEGER},
+      g_reper = #{gReper,jdbcType=INTEGER},
+      g_gtid = #{gGtid,jdbcType=VARCHAR}
+    where g_id = #{gId,jdbcType=INTEGER}
+  </update>
+  <select id="selectGoodsByGGTid" resultMap="BaseResultMap">
+    select * FROM goods where g_gtid=#{gtid}
+  </select>
+</mapper>
