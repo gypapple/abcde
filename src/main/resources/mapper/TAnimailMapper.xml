@@ -118,7 +118,7 @@
   <select id="selectAnimailByStatus" resultMap="BaseResultMap">
     select * from t_animail where status=#{status}
   </select>
-  <select id="selectAnimailByPrice" resultMap="BaseResultMap">
-    SELECT * FROM t_animail where price between #{minPrice} AND #{maxPrice}
+    <select id="selectAnimailByPrice" resultMap="BaseResultMap">
+    SELECT * FROM t_animail having price between ${minPrice} AND ${maxPrice}
   </select>
 </mapper>
