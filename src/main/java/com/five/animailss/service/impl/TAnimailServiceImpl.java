@@ -48,6 +48,10 @@ public class TAnimailServiceImpl implements TAnimailService {
 
     @Override
     public List<TAnimail> selectByPrice(String minPrice, String maxPrice) {
-        return tAnimailMapper.selectAnimailByPrice(minPrice, maxPrice);
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("minPrice",minPrice);
+        map.put("maxPrice", maxPrice);
+        return tAnimailMapper.selectAnimailByPrice(map);
     }
 }
