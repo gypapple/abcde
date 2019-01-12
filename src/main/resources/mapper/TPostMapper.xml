@@ -175,9 +175,8 @@
   <select id="selectByUid" resultType="java.lang.Integer" resultMap="BaseResultMap1">
       select p.p_id,p.p_picture,p.p_info,p.p_createtime,p.p_count,p.p_type,u.name,u.picture
     from t_post p inner join t_userinfo u on p.p_uid=u.id where p_uid=#{pUid}
-
+</select>
   <select id="selectAllTPost" resultMap="BaseResultMap">
     select * from t_post
-
   </select>
 </mapper>

@@ -32,7 +32,8 @@ public class TAnimailController {
     }
     @ApiOperation(notes = "实现传递参数，响应指定的数据",tags = {"根据id查询宠物信息"},value = "某个宠物的id信息")
     @GetMapping("/getanimailingById")
-    public ResultBean animailInfo(Integer id) {
+    public ResultBean animailInfo(Integer id,HttpServletResponse resp) {
+        resp.addHeader("Access-Control-Allow-Origin", "*");
         TAnimail tAnimail = tAnimailService.selectById(id);
         return ResultUtil.setOK("成功",tAnimail);
     }

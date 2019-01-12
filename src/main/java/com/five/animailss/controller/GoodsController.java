@@ -5,13 +5,14 @@ import com.five.animailss.entity.TAnimail;
 import com.five.animailss.service.GoodsService;
 import com.five.animailss.util.ResultUtil;
 import com.five.animailss.vo.ResultBean;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
+@Api(produces = "这是商品接口文档",value = "商品接口文档")
 @RestController
 public class GoodsController {
     @Autowired

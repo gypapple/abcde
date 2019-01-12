@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RestController;
 
 
 @Api(value = "社区贴子Controller", tags = "社区帖子接口")
 @RequestMapping("/tpost")
+@RestController
 public class TPostController {
 
     @Autowired
