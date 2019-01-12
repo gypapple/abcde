@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.five.animailss.mapper.TCommentMapper" >
+  <resultMap id="BaseResultMap" type="com.five.animailss.entity.TComment" >
+    <id column="c_id" property="cId" jdbcType="INTEGER" />
+    <result column="c_info" property="cInfo" jdbcType="VARCHAR" />
+    <result column="c_createtime" property="cCreatetime" jdbcType="TIMESTAMP" />
+    <result column="c_count" property="cCount" jdbcType="INTEGER" />
+    <result column="c_ufid" property="cUfid" jdbcType="INTEGER" />
+    <result column="c_pid" property="cPid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="BaseResultMap1" type="com.five.animailss.vo.VComment">
+    <id column="c_id" property="cId" jdbcType="INTEGER" />
+    <result column="c_info" property="cInfo" jdbcType="VARCHAR" />
+    <result column="c_createtime" property="cCreatetime" jdbcType="TIMESTAMP" />
+    <result column="c_count" property="cCount" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="c_pid" property="cPid" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insertComment" parameterType="com.five.animailss.entity.TComment">
+    insert into t_comment(c_info,c_createtime,c_count,c_ufid,c_pid) values(cInfo,now(),0,cUfid,cPid)
+  </insert>
+  <update id="updatecCount" parameterType="com.five.animailss.entity.TComment">
+    update t_comment set c_count=c_count+1 where c_id=#{cId}
+  </update>
+  <select id="selectById" parameterType="int" resultMap="BaseResultMap1">
+    select c.c_id,c.c_info,c.c_createtime,c.c_count,c.c_pid,u.name,u.picture from t_comment c
+    inner join t_userinfo u on c.c_ufid=u.id where c_id=#{cId}
+  </select>
+  <select id="selectByPid" parameterType="int" resultMap="BaseResultMap1">
+     select c.c_id,c.c_info,c.c_createtime,c.c_count,c.c_pid,u.name,u.picture from t_comment c
+    inner join t_userinfo u on c.c_ufid=u.id where c_pid=#(cPid)
+  </select>
+  <select id="selectByCount" resultMap="BaseResultMap1">
+    select c.c_id,c.c_info,c.c_createtime,c.c_count,c.c_pid,u.name,u.picture from t_comment c
+    inner join t_userinfo u on c.c_ufid=u.id where c_pid=#(cPid) ORDER BY c_count desc
+  </select>
+</mapper>
